@@ -1,5 +1,5 @@
-$button-pink: #d2287b
-$white-opacity: rgba(255, 255, 255, 0.6)
+$button_pink: #d2287b;
+$white_opacity: rgba(255, 255, 255, 0.6);
 
 .collection-album-container {
   margin-top: 30px;
@@ -11,10 +11,10 @@ $white-opacity: rgba(255, 255, 255, 0.6)
     p {
       font-size: 16px;
       font-weight: 300;
-      color: $white-opacity;
+      color: $white_opacity;
 
       a {
-        color: $white-opacity;
+        color: $white_opacity;
 
         &.album-name {
           color: white;
@@ -51,7 +51,7 @@ $white-opacity: rgba(255, 255, 255, 0.6)
   .collection-overlay-button {
     font-size: 20px;
     background-color: white;
-    color: $button-pink;
+    color: $button_pink;
     border-radius: 50% 50%;
     display: inline-block;
     width: 42px;
@@ -60,7 +60,7 @@ $white-opacity: rgba(255, 255, 255, 0.6)
     &:hover {
       cursor: pointer;
       color: white;
-      background-color: $button-pink;
+      background-color: $button_pink;
     }
 
     i {

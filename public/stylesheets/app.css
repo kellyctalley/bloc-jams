@@ -150,10 +150,10 @@ td.song-number {
     text-align: center;
     position: relative; }
     .player-bar .currently-playing .song-name, .player-bar .currently-playing .artist-name {
+      width: 100%;
       text-align: center;
       margin: 0;
       position: absolute;
-      width: 100%;
       font-size: 16px;
       font-weight: 300; }
     .player-bar .currently-playing .song-name {

@@ -1,5 +1,5 @@
-$button-pink: #d2287b
-$standard-font: 16px;
+$button_pink: #d2287b;
+$standard_font: 16px;
 
 .album-header-container {
   margin-top: 55px;
@@ -17,17 +17,17 @@ $standard-font: 16px;
   }
 
   h3 {
-    font-size: $standard-font * 3;
+    font-size: $standard_font * 3;
     font-weight: 300;
   }
 
   h4 {
-    font-size: $standard-font * 1.5;
+    font-size: $standard_font * 1.5;
     font-weight: 700;
   }
 
   h5 {
-    font-size: $standard-font;
+    font-size: $standard_font;
     font-weight: 500;
   }
 }
@@ -46,7 +46,7 @@ $standard-font: 16px;
   text-align: center;
   font-size: 14px;
   background-color: white;
-  color: $button-pink;
+  color: $button_pink;
   border-radius: 50% 50%;
   display: inline-block;
   width: 28px;
@@ -55,7 +55,7 @@ $standard-font: 16px;
   &:hover {
     cursor: pointer;
     color: white;
-    background-color: $button-pink;
+    background-color: $button_pink;
   }
 
   i {
