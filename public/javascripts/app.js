@@ -283,14 +283,14 @@ if (document.URL.match(/\/album.html/)) {
  };
  
 blocJams = angular.module('BlocJams', ['ui.router']);
- blocJams.config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
-   $locationProvider.html5Mode(true);
+blocJams.config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
+  $locationProvider.html5Mode(true);
  
-   $stateProvider.state('landing', {
-     url: '/',
+  $stateProvider.state('landing', {
+    url: '/',
      controller: 'Landing.controller',
      templateUrl: '/templates/landing.html'
-   });
+  });
 
    $stateProvider.state('collection', {
      url: '/collection',
@@ -303,10 +303,10 @@ blocJams = angular.module('BlocJams', ['ui.router']);
      templateUrl: '/templates/album.html',
      controller: 'Album.controller'
     });
- }]);
+}]);
  
- // This is a cleaner way to call the controller than crowding it on the module definition.
- blocJams.controller('Landing.controller', ['$scope', function($scope) {
+// This is a cleaner way to call the controller than crowding it on the module definition.
+blocJams.controller('Landing.controller', ['$scope', function($scope) {
   $scope.subText = "Turn the music up!";
   $scope.subTextClicked = function() {
      $scope.subText += '!';
@@ -366,26 +366,51 @@ blocJams.controller('Album.controller', ['$scope', 'SongPlayer', function($scope
 
 blocJams.controller('PlayerBar.controller', ['$scope', 'SongPlayer', function($scope, SongPlayer) {
   $scope.songPlayer = SongPlayer;
+  //$scope.consoleLogger = ConsoleLogger;
 }]);
  
- blocJams.service('SongPlayer', function() {
-   return {
-     currentSong: null,
-     currentAlbum: null,
-     playing: false,
+blocJams.service('SongPlayer', function() {
+  var trackIndex = function(album, song) {
+    return album.songs.indexOf(song);
+  };
+
+  return {
+    currentSong: null,
+    currentAlbum: null,
+    playing: false,
  
-     play: function() {
-       this.playing = true;
-     },
-     pause: function() {
-       this.playing = false;
-     },
-     setSong: function(album, song) {
-       this.currentAlbum = album;
-       this.currentSong = song;
-     }
-   };
- });
+    play: function() {
+      this.playing = true;
+    },
+    pause: function() {
+      this.playing = false;
+    },
+    next: function() {
+      var currentTrackIndex = trackIndex(this.currentAlbum, this.currentSong);
+      currentTrackIndex++;
+      if (currentTrackIndex >= this.currentAlbum.songs.length) {
+        currentTrackIndex = 0;
+      }
+      this.currentSong = this.currentAlbum.songs[currentTrackIndex];
+    },
+    previous: function() {
+      var currentTrackIndex = trackIndex(this.currentAlbum, this.currentSong);
+      currentTrackIndex--;
+      if (currentTrackIndex < 0) {
+        currentTrackIndex = this.currentAlbum.songs.length - 1;
+      }
+      this.currentSong = this.currentAlbum.songs[currentTrackIndex];
+    },
+    setSong: function(album, song) {
+      this.currentAlbum = album;
+      this.currentSong = song;
+    }
+  };
+});
+
+//blocJams.service('ConsoleLogger', ['$log', function ($log) {
+//  console.log("Hello World");
+//}]);
 });
 
 ;require.register("scripts/collection", function(exports, require, module) {
