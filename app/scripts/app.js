@@ -40,6 +40,11 @@ blocJams.config(['$stateProvider', '$locationProvider', function($stateProvider,
      templateUrl: '/templates/album.html',
      controller: 'Album.controller'
     });
+
+    $stateProvider.state('experiments', {
+     url: '/experiments',
+     templateUrl: '/templates/directives/experiments.html',
+    });
 }]);
  
 // This is a cleaner way to call the controller than crowding it on the module definition.
@@ -213,4 +218,29 @@ blocJams.directive('slider', function(){
 
   };
 });
+
+blocJams.directive('clickMe', function() {
+  return {
+    restrict: 'E',
+    link: function(scope, element) {
+      $(element).click(function() {
+        alert('This is working');
+      });
+    }
+  };
+});
+
+blocJams.directive('countHoverTime', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element) {
+      $(element).hover(function() {
+        window.setTimeout(function() {
+
+        };
+      });
+    }
+  };
+});
+
 
