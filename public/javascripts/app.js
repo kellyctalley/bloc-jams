@@ -397,6 +397,7 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope) {
     currentAlbum: null,
     playing: false,
     volume: 90,
+    previousVolume: 0,
  
     play: function() {
       this.playing = true;
@@ -441,9 +442,13 @@ blocJams.service('SongPlayer', ['$rootScope', function($rootScope) {
       this.volume = volume;
     },
     
-    setMute: function(mute){
-      if(currentSoundFile){
-        currentSoundFile.toggleMute();
+    mute: function(){
+      var currentVol = currentSoundFile.getVolume();
+      currentSoundFile.toggleMute();
+      if (currentSoundFile.isMuted()) {
+        this.volume = 0;
+      } else {
+        this.volume = currentVol;
       }
     },
 
